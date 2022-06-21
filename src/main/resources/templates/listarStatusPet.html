@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>listar Status Pet</title>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </head>
+    <body>
+        <div class="container" style="width:600px; margin-left: 10px; padding: 0">
+            <H1>listar Status Pet</H1>
+            <hr>
+            <form action="" id="listarStatusPet">
+                <div class="custom-select" style="width:200px; margin-bottom:60px">
+                    <select id="statusPet" required="required">
+                        <option value="ATIVO">ATIVO</option>
+                        <option value="INATIVO">INATIVO</option>
+                    </select>
+                </div>
+                <button id="enviar" onclick="pesquisarPet();">Enviar</button>
+            </form>
+            <hr>
+            <table class="table" id="tabelaResultados">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">NOME</th>
+                        <th scope="col">DATA DE NASCIMENTO</th>
+                        <th scope="col">ESPÉCIE</th>
+                        <th scope="col">PORTE</th>
+                        <th scope="col">STATUS</th>
+                    </tr>
+                </thead>
+                <!--
+                <tbody class="table-group-divider" th:each="animal : ${animais}">
+                    <td th:text="${animal.nome}"></td>
+                    <td th:text="${animal.dataNascimento}"></td>
+                    <td th:text="${animal.especieAnimal}"></td>
+                    <td th:text="${animal.porteAnimal}"></td>
+                    <td th:text="${animal.cadastroAtivo}"></td>
+                </tbody>
+                -->
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+
+			// PESQUISAR USUÁRIO
+			function pesquisarPet() {
+				var status = $('#statusPet').val();
+
+                $.ajax({
+                    method: "GET",
+                    url: "listarStatusPet",
+                    data: "name= " + status,
+
+                    success: function (response) {
+                        $('#tabelaResultados > tbody > tr').remove();
+                        for (var i = 0; i < response.length; i++) {
+                            $('#tabelaResultados > tbody').append('<tr id="' + response[i].id + '"><td>' + response[i].nome + '</td></tr>')
+                        }
+                    }
+                }).fail(function (xhr, status, errorThrow) {
+                    alert("Erro ao buscar: " + xhr.responseText);
+                });
+			}
+		</script>
+    </body>
+</html>
