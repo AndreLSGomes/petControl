@@ -69,6 +69,14 @@ public class PetsController {
         return new ResponseEntity<Animal>(animal, HttpStatus.OK);
     }
 
+    // Atualizar pet no banco
+    @PutMapping(value = "atualizarStatusPet")
+    @ResponseBody
+    public ResponseEntity<Animal> atualizarStatusPet(@RequestBody Animal animal){
+        animal = petRepository.saveAndFlush(animal);
+        return new ResponseEntity<Animal>(animal, HttpStatus.OK);
+    }
+
     // Salvando os registros no banco
     @PostMapping(value = "salvarPet")
     @ResponseBody
