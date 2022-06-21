@@ -39,14 +39,6 @@ public class PetsController {
         }
         return new ResponseEntity<List<Animal>>(animais, HttpStatus.OK);
     }
-/*
-    @GetMapping(value = "listarPets")
-    public String showList(Model model){
-        model.addAttribute("animais", petRepository.findAll());
-        return "listarStatusPet";
-    }
-
- */
 
     // Listar pets pelo Status do Cadastro
     @GetMapping(value = "listarStatusPet/{status}")
