@@ -1,40 +1,42 @@
-package br.com.pet.crud.model;
+package br.com.pet.crud.dto;
 
-import br.com.pet.crud.enums.Enum_StatusCadastro;
 import br.com.pet.crud.enums.Enum_PorteAnimal;
+import br.com.pet.crud.enums.Enum_StatusCadastro;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.*;
 import java.util.Date;
 
-@Entity
-@SequenceGenerator(name = "seq_pet", sequenceName = "seq_pet", allocationSize = 1, initialValue = 1)
-public class Animal {
-
-    private static final long serialVersionUID = 1L;
+@Component
+public class AnimalDTO {
 
     // Atributos
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_pet")
     private Long id;
     private String nome;
     private Date dataNascimento;
     private String especieAnimal;
     private Enum_PorteAnimal porteAnimal;
     private Enum_StatusCadastro statusCadastro;
+    private int ano;
+    private int mes;
+    private int dia;
 
-/*
-    // Construtor
-    public Animal(Long id, String nome, Date dataNascimento, String especieAnimal, Enum_PorteAnimal porteAnimal, Enum_StatusCadastro statusCadastro) {
+    // Construtor Vazio
+    public AnimalDTO(){}
+
+    // Consturtor para exibir na view
+    public AnimalDTO(Long id, String nome, Date dataNascimento, String especieAnimal, Enum_PorteAnimal porteAnimal, Enum_StatusCadastro statusCadastro, int ano, int mes, int dia) {
         this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.especieAnimal = especieAnimal;
         this.porteAnimal = porteAnimal;
         this.statusCadastro = statusCadastro;
+        this.ano = ano;
+        this.mes = mes;
+        this.dia = dia;
     }
-*/
 
-    // Métodos acessores
+    // Métodos acessore
     public Long getId() {
         return id;
     }
@@ -81,5 +83,29 @@ public class Animal {
 
     public void setStatusCadastro(Enum_StatusCadastro statusCadastro) {
         this.statusCadastro = statusCadastro;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
     }
 }

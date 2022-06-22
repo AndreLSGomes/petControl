@@ -1,14 +1,24 @@
 <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Gestão de Pets</title>
-</head>
-<body>
-    <h1>Gestão de Pets</h1>
-    <hr>
-</body>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Gestão de Pets</title>
+    </head>
+    <body>
+        <h1>Gestão de Pets</h1>
+        <hr>
+        <form action="#" th:action="@{listarPets/{id}(id = ${animal.id})}" th:object="${animal}" method = "POST">
+            <label>Nome: </label>
+            <input type="text" id="nome"/>
+            <label>Data de Nascimento: </label>
+            <input type="text" id="dtNascimento">
+            <label>Espécie: </label>
+            <input type="text id="especiePet"/>
+            <label>Porte do Animal: </label>
+            <input type="text"/>
+        </form>
+    </body>
 </html>
